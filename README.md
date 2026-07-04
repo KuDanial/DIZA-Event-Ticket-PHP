@@ -3,6 +3,7 @@
 <p align="center">
 <img src="./images/DIZAET_Logo.png" alt="DIZAET Logo" width="500">
 </p>
+<p align="center">Your one-stop platform for all event ticketing needs.</p>
 
 A relational, database-driven event ticket booking and administration portal prototype. This system acts as a public storefront for browsing and booking ticketing routines while offering a restricted, role-based workspace for event **Organizers** to publish events and track sales, and **HQ Administrators** to manage users, events, and generate operational analytics reports.
 
@@ -16,28 +17,38 @@ A relational, database-driven event ticket booking and administration portal pro
 [![Status: Complete](https://img.shields.io/badge/Status-Complete-008f7a?style=for-the-badge)](#)
 
 ---
+![Landing Page](images/screenshot.png)
 
-## 🚀 Key Features
+## ⚙️ How to Run Locally
 
-### 1. 🌐 Public Customer Storefront
-* **Event Search & Filter:** Filter by search keyword, location (Kuala Lumpur, kelantan, online, etc.), and Category (Concert, Seminar, Sports, Workshop).
-* **Trending Events Grid:** Responsive event lists displaying custom uploaded banner images, ticket prices, dates, and venue capacity.
-* **Seamless Booking flow:** Guided FPX/eWallet payment simulation forms with dynamic pricing calculations.
+### Prerequisites:
+Make sure you have **XAMPP** installed on your system.
 
-### 2. 🎟️ Attendee Workspace
-* **Booking & Ticket History:** Full transaction logs displaying status (confirmed, past) and student details.
-* **Print Invoice & QR Code:** Action triggers to simulate invoice downloads and retrieve booking QR codes.
-* **Account Settings:** Self-service profile updates (Gender, Student ID, Phone Number) and secure MD5 password modifications.
+### Steps:
+1. Clone or copy the project folder to your XAMPP htdocs directory:
+   ```bash
+   C:\\xampp\\htdocs\\DIZA-Event-Ticket-PHP
+   ```
+2. Start the **Apache** and **MySQL** modules inside the XAMPP Control Panel.
+3. Open PHPMyAdmin (`http://localhost/phpmyadmin`) in your browser.
+4. Create a new database named **`diza_ticketing_db`**.
+5. Import the database schema file **`diza_ticketing.sql`** located in the root of the project.
+6. Open your browser and navigate to:
+   ```text
+   http://localhost/DIZA-Event-Ticket-PHP
+   ```
 
-### 3. 💼 Organizer Dashboard
-* **Real-time Event Creation:** Multi-step event creation module supporting dynamic image/banner uploads.
-* **Tickets Volume Analytics:** Interactive visual charts powered by **Chart.js** displaying confirmed bookings per event.
-* **Print Reports:** Custom print styles automatically clean the screen for formal paper/PDF business reports.
+---
 
-### 4. 🔐 System Administration Panel
-* **Operational Demographics:** Visual distribution bar charts of active platform roles (Attendees vs Organizers).
-* **Payment Preference Analytics:** Relational doughnut charts displaying transaction channels (FPX vs eWallet).
-* **System Modulators:** Full role-based CRUD management for User Accounts (Admins, Attendees, Organizers) and Events.
+## 🔑 Test Credentials & Access Codes
+
+Use the default password **`123`** to log in as any role:
+
+| Profile Name | Username | Assigned Role | Access Level | Scope / Workspace |
+| :--- | :--- | :--- | :--- | :--- |
+| **Super Admin** | `admin` | Administrator | System-wide | HQ Management / System Audit |
+| **Tech Organizer** | `org_tech` | Organizer | Partner Outlet | Tech Giants Corp Event Manager |
+| **Tengku Danial** | `Danial` | Attendee | Student / User | Personal Ticket Purchases |
 
 ---
 
@@ -73,37 +84,28 @@ DIZA-Event-Ticket-PHP/
 ```
 
 ---
+## 🚀 Key Features
 
-## ⚙️ How to Run Locally
+### 1. 🌐 Public Customer Storefront
+* **Event Search & Filter:** Filter by search keyword, location (Kuala Lumpur, kelantan, online, etc.), and Category (Concert, Seminar, Sports, Workshop).
+* **Trending Events Grid:** Responsive event lists displaying custom uploaded banner images, ticket prices, dates, and venue capacity.
+* **Seamless Booking flow:** Guided FPX/eWallet payment simulation forms with dynamic pricing calculations.
 
-### Prerequisites:
-Make sure you have **XAMPP** installed on your system.
+### 2. 🎟️ Attendee Workspace
+* **Booking & Ticket History:** Full transaction logs displaying status (confirmed, past) and student details.
+* **Print Invoice & QR Code:** Action triggers to simulate invoice downloads and retrieve booking QR codes.
+* **Account Settings:** Self-service profile updates (Gender, Student ID, Phone Number) and secure MD5 password modifications.
 
-### Steps:
-1. Clone or copy the project folder to your XAMPP htdocs directory:
-   ```bash
-   C:\\xampp\\htdocs\\DIZA-Event-Ticket-PHP
-   ```
-2. Start the **Apache** and **MySQL** modules inside the XAMPP Control Panel.
-3. Open PHPMyAdmin (`http://localhost/phpmyadmin`) in your browser.
-4. Create a new database named **`diza_ticketing_db`**.
-5. Import the database schema file **`diza_ticketing.sql`** located in the root of the project.
-6. Open your browser and navigate to:
-   ```text
-   http://localhost/DIZA-Event-Ticket-PHP
-   ```
+### 3. 💼 Organizer Dashboard
+* **Real-time Event Creation:** Multi-step event creation module supporting dynamic image/banner uploads.
+* **Tickets Volume Analytics:** Interactive visual charts powered by **Chart.js** displaying confirmed bookings per event.
+* **Print Reports:** Custom print styles automatically clean the screen for formal paper/PDF business reports.
 
----
-
-## 🔑 Test Credentials & Access Codes
-
-Use the default password **`1234`** (or matching MD5 hash) to log in as any role:
-
-| Profile Name | Username | Assigned Role | Access Level | Scope / Workspace |
-| :--- | :--- | :--- | :--- | :--- |
-| **Super Admin** | `admin` | Administrator | System-wide | HQ Management / System Audit |
-| **Tech Organizer** | `org_tech` | Organizer | Partner Outlet | Tech Giants Corp Event Manager |
-| **Tengku Danial** | `Danial` | Attendee | Student / User | Personal Ticket Purchases |
+### 4. 🔐 System Administration Panel
+* **Operational Demographics:** Visual distribution bar charts of active platform roles (Attendees vs Organizers).
+* **Payment Preference Analytics:** Relational doughnut charts displaying transaction channels (FPX vs eWallet).
+* **System Modulators:** Full role-based CRUD management for User Accounts (Admins, Attendees, Organizers) and Events.
 
 ---
+
 *Developed for academic evaluation under course code ICT608 (Semester March - August 2026).*
