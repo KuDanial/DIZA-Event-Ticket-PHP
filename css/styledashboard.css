@@ -1,0 +1,285 @@
+/* =========================================
+   1. RESET & BASE STYLES
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #f4f6f9; color: #333; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* =========================================
+   2. LAYOUT & SIDEBAR
+   ========================================= */
+.dashboard-container { display: flex; min-height: 100vh; }
+
+.sidebar { width: 260px; display: flex; flex-direction: column; position: fixed; height: 100%; left: 0; top: 0; color: #ecf0f1; transition: background 0.3s; }
+.brand { padding: 20px; text-align: center; }
+.brand-logo { width: 120px; height: auto; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
+.brand .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-left: 5px; font-weight: bold; }
+
+.nav-links { margin-top: 20px; }
+.menu-header { padding: 15px 25px 5px 25px; font-size: 11px; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+.nav-links li a { display: block; padding: 12px 25px; transition: 0.3s; border-left: 4px solid transparent; font-size: 14px; }
+.nav-links i { margin-right: 12px; width: 20px; text-align: center; }
+
+.main-content { flex: 1; margin-left: 260px; display: flex; flex-direction: column; }
+
+/* =========================================
+   3. THEMES (Admin vs Organizer)
+   ========================================= */
+/* Admin Theme (Blue/Dark) */
+body.admin-theme .sidebar { background-color: #2c3e50; }
+body.admin-theme .brand { background-color: #1a252f; border-bottom: 1px solid #34495e; }
+body.admin-theme .brand .badge { background-color: #e74c3c; color: #fff; }
+body.admin-theme .menu-header { color: #7f8c8d; }
+body.admin-theme .nav-links li a { color: #bdc3c7; }
+body.admin-theme .nav-links li a:hover, body.admin-theme .nav-links li.active a { background-color: #34495e; color: white; border-left: 4px solid #3498db; }
+body.admin-theme .page-title h1 { color: #2c3e50; }
+body.admin-theme .dropdown-content a:hover { background-color: #f1f5f9; color: #3498db; }
+/* Admin Components */
+body.admin-theme .btn-primary, body.admin-theme .btn-create { background-color: #3498db; color: white; }
+body.admin-theme .btn-primary:hover { background-color: #2980b9; }
+body.admin-theme .page-btn.active { background-color: #3498db; border-color: #3498db; color: white; }
+body.admin-theme .form-input:focus { border-color: #3498db; box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1); }
+
+/* Organizer Theme (Indigo/Purple) */
+body.org-theme .sidebar { background-color: #30336b; }
+body.org-theme .brand { background-color: #130f40; border-bottom: 1px solid #4834d4; }
+body.org-theme .brand .badge { background-color: #f9ca24; color: #333; }
+body.org-theme .menu-header { color: #a4b0be; }
+body.org-theme .nav-links li a { color: #dff9fb; }
+body.org-theme .nav-links li a:hover, body.org-theme .nav-links li.active a { background-color: #4834d4; color: white; border-left: 4px solid #f9ca24; }
+body.org-theme .page-title h1 { color: #30336b; }
+body.org-theme .dropdown-content a:hover { background-color: #f1f5f9; color: #4834d4; }
+/* Organizer Components */
+body.org-theme .btn-primary, body.org-theme .btn-create, body.org-theme .btn-submit, body.org-theme .btn-save, body.org-theme .edit-avatar-btn { background-color: #4834d4; color: white; }
+body.org-theme .btn-primary:hover, body.org-theme .btn-create:hover, body.org-theme .btn-submit:hover, body.org-theme .btn-save:hover, body.org-theme .edit-avatar-btn:hover { background-color: #30336b; }
+body.org-theme .page-btn.active { background-color: #4834d4; border-color: #4834d4; color: white; }
+body.org-theme .form-input:focus, body.org-theme .form-select:focus, body.org-theme .form-textarea:focus { border-color: #4834d4; box-shadow: 0 0 0 3px rgba(72, 52, 212, 0.1); }
+body.org-theme .col-title { color: #30336b; }
+
+/* =========================================
+   4. TOP BAR & UI
+   ========================================= */
+.top-bar { background-color: white; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.page-title h1 { font-size: 20px; font-weight: 600; }
+
+.user-menu { position: relative; }
+.user-btn { background: none; border: none; display: flex; align-items: center; cursor: pointer; gap: 10px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #eee; }
+.username { font-weight: 600; color: #333; }
+
+.dropdown-content { display: none; position: absolute; right: 0; top: 55px; background-color: white; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 6px; border: 1px solid #eee; z-index: 100; }
+.dropdown-content.show { display: block; }
+.dropdown-header { padding: 15px; background-color: #f8f9fa; border-bottom: 1px solid #eee; font-size: 12px; color: #888; }
+.dropdown-content a { padding: 12px 16px; display: block; color: #333; font-size: 14px; transition: 0.2s; }
+.dropdown-content a.logout { color: #e74c3c; }
+.divider { border-top: 1px solid #eee; }
+
+/* =========================================
+   5. CARDS & WIDGETS
+   ========================================= */
+.content-padding { padding: 30px; }
+
+/* --- CARD LOGIC --- */
+/* Default Card (Used for Tables) - No Padding to let table stretch */
+.card { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); overflow: hidden; margin-bottom: 25px; }
+
+/* Padded Card (Used for Forms/Profiles) - Adds the missing padding back */
+.card.card-padded { padding: 30px; } 
+
+/* Profile Specifics */
+.profile-container { padding: 30px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
+@media (max-width: 900px) { .profile-container { grid-template-columns: 1fr; } }
+.profile-card { text-align: center; padding: 40px 20px; }
+.profile-img-container { position: relative; width: 140px; height: 140px; margin: 0 auto 20px auto; }
+.profile-img-container img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #f0f2f5; }
+.edit-avatar-btn { position: absolute; bottom: 5px; right: 5px; background-color: #3498db; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 3px solid white; transition: 0.2s; color: white; font-size: 14px; }
+.role-text { font-weight: 600; font-size: 14px; margin-bottom: 5px; color: inherit; }
+.email-text { color: #7f8c8d; font-size: 14px; margin-bottom: 20px; }
+.profile-meta { border-top: 1px solid #eee; padding-top: 15px; color: #95a5a6; font-size: 13px; }
+
+/* Dashboard Widgets */
+.welcome-banner { background: linear-gradient(135deg, #686de0 0%, #4834d4 100%); color: white; padding: 25px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(72, 52, 212, 0.2); }
+.welcome-banner h2 { font-size: 24px; margin-bottom: 5px; }
+.welcome-banner p { opacity: 0.9; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-bottom: 30px; }
+.stat-card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); display: flex; align-items: center; transition: 0.3s; }
+.stat-card:hover { transform: translateY(-5px); }
+.stat-icon { width: 55px; height: 55px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 24px; margin-right: 20px; color: white; }
+.stat-icon.purple { background-color: #9b59b6; }
+.stat-icon.blue, .icon-sales { background-color: #e3f2fd; color: #2980b9; } 
+.stat-icon.green, .icon-revenue { background-color: #e8f5e9; color: #27ae60; }
+.icon-events { background-color: #f3e5f5; color: #8e44ad; }
+.stat-info h3 { font-size: 26px; color: #333; margin-bottom: 2px; }
+.stat-info p { color: #888; font-size: 14px; font-weight: 500; }
+
+/* =========================================
+   6. TABLES & LISTS
+   ========================================= */
+.table-controls { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ecf0f1; flex-wrap: wrap; gap: 15px; }
+.left-controls { display: flex; gap: 15px; align-items: center; }
+.search-wrapper { position: relative; width: 300px; }
+.search-wrapper input { width: 100%; padding: 10px 10px 10px 35px; border: 1px solid #dcdfe6; border-radius: 6px; outline: none; color: #333; }
+.search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa; }
+
+.table-responsive { width: 100%; overflow-x: auto; }
+.styled-table { width: 100%; border-collapse: collapse; }
+.styled-table th, .styled-table td { padding: 15px 25px; text-align: left; border-bottom: 1px solid #ecf0f1; }
+.styled-table th { background-color: #f8f9fa; color: #7f8c8d; font-weight: 600; font-size: 13px; text-transform: uppercase; }
+.styled-table td { font-size: 14px; vertical-align: middle; color: #2c3e50; }
+
+/* Column Specifics */
+.col-id {  color: #888; font-size: 12px; }
+.col-title { font-weight: 600; font-size: 15px; }
+.col-desc { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #777; font-size: 13px; }
+.col-price { font-weight: 600; color: #27ae60; }
+.venue-name { font-weight: 600; color: #555; font-size: 13px; }
+.venue-addr { font-size: 11px; color: #999; margin-top: 2px; }
+.venue-cap { font-size: 11px; background: #f1f2f6; color: #555; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; width: fit-content; }
+.organizer-info { font-weight: 600; color: #3498db; }
+
+/* Cell Content */
+.user-cell, .event-cell { display: flex; align-items: center; gap: 12px; }
+.user-cell img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.event-cell img { width: 50px; height: 35px; border-radius: 4px; object-fit: cover; }
+.user-info .name, .event-info .title { font-weight: 600; color: #333; }
+.user-info .email, .event-info .date { font-size: 12px; color: #888; }
+
+/* Badges & Progress */
+.status { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; display: inline-block; }
+.status.active, .status.published { background-color: #e8f8f5; color: #2ecc71; }
+.status.inactive, .status.past { background-color: #f2f2f2; color: #95a5a6; }
+.status.draft, .status.pending { background-color: #fff8e1; color: #f39c12; }
+.status.banned { background-color: #fdeded; color: #e74c3c; }
+.role-badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; background-color: #e0e0e0; color: #555; font-weight: 600; }
+.role-badge.super { background-color: #efebe9; color: #795548; border: 1px solid #d7ccc8; }
+.role-badge.moderator { background-color: #e3f2fd; color: #1976d2; border: 1px solid #bbdefb; }
+.progress-bar { width: 100px; height: 6px; background-color: #eee; border-radius: 3px; margin-top: 5px; overflow: hidden; }
+.progress-fill { height: 100%; background-color: #2ecc71; }
+.sales-text { font-size: 12px; color: #555; font-weight: 600; }
+
+/* Pagination */
+.pagination { padding: 15px 25px; display: flex; justify-content: flex-end; align-items: center; gap: 5px; border-top: 1px solid #ecf0f1; }
+.page-btn { padding: 6px 12px; border: 1px solid #dcdfe6; background: white; color: #555; border-radius: 4px; cursor: pointer; font-size: 13px; }
+
+/* Buttons */
+.btn-primary, .btn-create, .btn-submit, .btn-save { border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.btn-cancel, .btn-outline { background-color: white; color: #555; border: 1px solid #dcdfe6; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; transition: 0.2s; }
+.btn-cancel:hover { background-color: #f4f6f9; }
+.btn-action { width: 32px; height: 32px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-left: 5px; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; }
+.btn-action.edit { background-color: #e3f2fd; color: #3498db; }
+.btn-action.edit:hover { background-color: #3498db; color: white; }
+.btn-action.delete { background-color: #fdeded; color: #e74c3c; }
+.btn-action.delete:hover { background-color: #e74c3c; color: white; }
+.btn-action.view, .btn-icon { background-color: #f3e5f5; color: #8e44ad; }
+.btn-action.view:hover, .btn-icon:hover { background-color: #8e44ad; color: white; }
+.text-right { text-align: right; }
+
+/* =========================================
+   7. FORMS
+   ========================================= */
+.card-header { margin-bottom: 20px; border-bottom: 1px solid #ecf0f1; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+.card-header h3 { font-size: 18px; color: inherit; }
+.optional-tag { font-size: 12px; background: #eee; padding: 2px 8px; border-radius: 4px; color: #666; }
+
+.org-form, .admin-form { display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 0px; }
+.form-group { margin-bottom: 0px; display: flex; flex-direction: column;}
+.form-label, .form-group label { display: block; font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px; }
+.form-label span, label span { color: #e74c3c; margin-left: 2px; }
+
+.form-input, .form-select, .form-textarea { width: 100%; padding: 12px 15px; border: 1px solid #dcdfe6; border-radius: 6px; font-size: 14px; color: #333; outline: none; transition: 0.3s; background-color: white; }
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-section-title { font-size: 16px; font-weight: 600; color: inherit; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 10px; }
+.form-section-title:first-child { margin-top: 0; }
+
+.file-upload-box { border: 2px dashed #dcdfe6; padding: 40px; text-align: center; border-radius: 6px; cursor: pointer; transition: 0.2s; color: #888; background-color: #fafbfc; }
+.file-upload-box:hover { border-color: #4834d4; color: #4834d4; background: #f0f0ff; }
+.upload-icon { font-size: 30px; margin-bottom: 10px; display: block; }
+.form-actions { display: flex; gap: 15px; margin-top: 20px; justify-content: flex-end; border-top: 1px solid #eee; padding-top: 20px; }
+
+/* Extracted from manage-organizers-view.html */
+.stat-badge { background: #e3f2fd; color: #3498db; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: 600; }
+
+@media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
+
+/* =========================================
+   Extracted from admin-dashboard.html
+   ========================================= */
+/* Logo styling - already exists in base styles */
+/* Additional button link styles */
+a.btn-primary, a.btn-create, a.btn-action {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   Extracted from manage-admins.html (and manage files)
+   ========================================= */
+/* View Button Style (Purple) - for action buttons */
+.btn-action.view {
+    background-color: #f3e5f5;
+    color: #8e44ad;
+}
+.btn-action.view:hover {
+    background-color: #8e44ad;
+    color: white;
+}
+
+/* =========================================
+   Extracted from manage-admins-view.html
+   ========================================= */
+.view-label { 
+    font-size: 12px; 
+    color: #888; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+    margin-bottom: 5px; 
+    font-weight: 600; 
+}
+.view-value { 
+    font-size: 15px; 
+    color: #333; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding-bottom: 10px; 
+}
+
+/* =========================================
+   Extracted from organizer-events-view.html
+   ========================================= */
+.view-label { 
+    font-size: 12px; 
+    color: #888; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+    margin-bottom: 5px; 
+    font-weight: 600; 
+}
+.view-value { 
+    font-size: 15px; 
+    color: #333; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid #f0f0f0; 
+    padding-bottom: 10px; 
+    line-height: 1.5; 
+}
+.badge-published { 
+    background: #e8f8f5; 
+    color: #2ecc71; 
+    padding: 4px 10px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: 600; 
+}
+.badge-draft { 
+    background: #fff8e1; 
+    color: #f39c12; 
+    padding: 4px 10px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: 600; 
+}
