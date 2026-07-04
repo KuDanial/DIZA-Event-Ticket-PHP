@@ -17,7 +17,7 @@ A relational, database-driven event ticket booking and administration portal pro
 [![Status: Complete](https://img.shields.io/badge/Status-Complete-008f7a?style=for-the-badge)](#)
 
 ---
-![Landing Page](images/screenshot.png)
+![Landing Page](images/screenshot2.png)
 
 ## ⚙️ How to Run Locally
 
